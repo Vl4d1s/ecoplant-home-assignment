@@ -8,6 +8,9 @@ import {
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
+  getFilteredRowModel,
+  Column,
+  Table as ReactTable,
 } from "@tanstack/react-table";
 import { useMemo } from "react";
 
@@ -39,6 +42,7 @@ export default function Table({ data }: { data: Measurement[] }) {
     initialState: { pagination: { pageSize: 20 } },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
   return (
@@ -53,7 +57,7 @@ export default function Table({ data }: { data: Measurement[] }) {
                     {headerGroup.headers.map((header) => (
                       <th
                         key={header.id}
-                        className="px-3 py-3 text-xs font-bold text-gray-500 uppercase tracking-wider text-left"
+                        className="px-3 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-left"
                       >
                         {header.isPlaceholder
                           ? null
@@ -61,6 +65,11 @@ export default function Table({ data }: { data: Measurement[] }) {
                               header.column.columnDef.header,
                               header.getContext()
                             )}
+                        {header.column.getCanFilter() ? (
+                          <div>
+                            <Filter column={header.column} table={table} />
+                          </div>
+                        ) : null}
                       </th>
                     ))}
                   </tr>
@@ -148,5 +157,56 @@ export default function Table({ data }: { data: Measurement[] }) {
         </div>
       </div>
     </div>
+  );
+}
+
+function Filter({
+  column,
+  table,
+}: {
+  column: Column<any, any>;
+  table: ReactTable<any>;
+}) {
+  const firstValue = table
+    .getPreFilteredRowModel()
+    .flatRows[0]?.getValue(column.id);
+
+  const columnFilterValue = column.getFilterValue();
+
+  return typeof firstValue === "number" ? (
+    <div className="flex space-x-2">
+      <input
+        type="number"
+        value={(columnFilterValue as [number, number])?.[0] ?? ""}
+        onChange={(e) =>
+          column.setFilterValue((old: [number, number]) => [
+            e.target.value,
+            old?.[1],
+          ])
+        }
+        placeholder={`Min`}
+        className="w-24 border"
+      />
+      <input
+        type="number"
+        value={(columnFilterValue as [number, number])?.[1] ?? ""}
+        onChange={(e) =>
+          column.setFilterValue((old: [number, number]) => [
+            old?.[0],
+            e.target.value,
+          ])
+        }
+        placeholder={`Max`}
+        className="w-24 border"
+      />
+    </div>
+  ) : (
+    <input
+      type="text"
+      value={(columnFilterValue ?? "") as string}
+      onChange={(e) => column.setFilterValue(e.target.value)}
+      placeholder={`Search...`}
+      className="w-36 border"
+    />
   );
 }
