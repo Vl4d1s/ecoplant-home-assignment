@@ -30,7 +30,7 @@ tfoot th {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #38a169, #68d391, #a3e635);
+  background: linear-gradient(to right, #383e33, #68d391, #a3e635);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 3rem; /* Increase font size */
