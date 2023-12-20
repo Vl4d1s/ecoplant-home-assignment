@@ -1,6 +1,6 @@
 export interface Measurement {
-  id: number;
-  temperature: number;
-  humidity: number;
-  date: string;
+  kwh: number;
+  pressure: number;
+  temp: number;
+  timestamp: string;
 }
