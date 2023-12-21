@@ -12,6 +12,7 @@ import {
   getSortedRowModel,
 } from "@tanstack/react-table";
 import { useMemo } from "react";
+
 import Filters from "./Filters";
 import Pagination from "./Pagination";
 import TableRow from "./TableRow";
@@ -36,7 +37,7 @@ export default function Table({ data }: TableProps) {
         header: "Temperature",
       }),
       columnHelper.accessor("timestamp", {
-        header: "timestamp",
+        header: "Timestamp",
       }),
     ],
     []
@@ -60,36 +61,45 @@ export default function Table({ data }: TableProps) {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                      <th
-                        key={header.id}
-                        className="px-3 py-4 text-sm font-bold text-gray-500 uppercase tracking-wider text-left"
-                      >
-                        {header.isPlaceholder ? null : (
-                          <div
-                            {...{
-                              className: header.column.getCanSort()
-                                ? "cursor-pointer select-none"
-                                : "",
-                              onClick: header.column.getToggleSortingHandler(),
-                            }}
-                          >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                            <Sort
-                              isSorted={header.column.getIsSorted() as string}
-                            />
-                          </div>
-                        )}
-                        {header.column.getCanFilter() && (
-                          <Filters column={header.column} table={table} />
-                        )}
-                      </th>
-                    ))}
-                  </tr>
+                  <>
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => (
+                        <th
+                          key={header.id}
+                          className="px-3 py-4 text-sm  text-white tracking-wider text-left bg-green-700"
+                        >
+                          {header.isPlaceholder ? null : (
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? "cursor-pointer select-none"
+                                  : "",
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
+                              }}
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              <Sort
+                                isSorted={header.column.getIsSorted() as string}
+                              />
+                            </div>
+                          )}
+                        </th>
+                      ))}
+                    </tr>
+                    <tr>
+                      {headerGroup.headers.map((header) => (
+                        <th key={header.id}>
+                          {header.column.getCanFilter() && (
+                            <Filters column={header.column} table={table} />
+                          )}
+                        </th>
+                      ))}
+                    </tr>
+                  </>
                 ))}
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">

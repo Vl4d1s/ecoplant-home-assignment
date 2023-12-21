@@ -13,7 +13,7 @@ export default function Filters({ column, table }: FiltersProps) {
   const columnFilterValue = column.getFilterValue();
 
   return typeof firstValue === "number" ? (
-    <div className="flex space-x-2 mt-2">
+    <div className="flex space-x-2 ">
       <input
         type="number"
         value={(columnFilterValue as [number, number])?.[0] ?? ""}
@@ -40,7 +40,7 @@ export default function Filters({ column, table }: FiltersProps) {
       />
     </div>
   ) : (
-    <div className="flex space-x-2 mt-2">
+    <div className="flex space-x-2">
       <input
         type="text"
         value={(columnFilterValue ?? "") as string}

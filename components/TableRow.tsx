@@ -10,7 +10,7 @@ export default function TableRow({ row, index }: TableRowProps) {
   return (
     <tr
       key={row.id}
-      className={`${index % 2 === 0 ? "bg-gray-50" : ""} hover:bg-gray-100`}
+      className={`${index % 2 === 0 ? "bg-gray-50" : ""} hover:bg-green-50`}
     >
       {row.getVisibleCells().map((cell) => (
         <td
