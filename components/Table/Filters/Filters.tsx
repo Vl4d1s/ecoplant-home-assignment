@@ -1,5 +1,4 @@
 import { Column, Table as ReactTable } from "@tanstack/react-table";
-import { useState } from "react";
 
 interface FiltersProps {
   column: Column<any, any>;
