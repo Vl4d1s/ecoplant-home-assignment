@@ -1,9 +1,13 @@
 import { Table as ReactTable } from "@tanstack/react-table";
+import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import KeyboardDoubleArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftOutlined";
+import KeyboardDoubleArrowRightOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowRightOutlined";
 
 interface PaginationButtonProps {
   onClick: () => void;
   disabled: boolean;
-  label: string;
+  label: string | JSX.Element;
 }
 
 interface PaginationProps {
@@ -16,7 +20,7 @@ const PaginationButton = ({
   label,
 }: PaginationButtonProps) => (
   <button
-    className="ml-2 px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-900 hover:bg-blue-700 disabled:opacity-50"
+    className="ml-2 px-3 py-2 rounded-md text-sm font-medium text-white bg-green-700 hover:bg-green-500 disabled:opacity-50"
     onClick={onClick}
     disabled={disabled}
   >
@@ -29,22 +33,22 @@ const Pagination = ({ table }: PaginationProps) => {
     {
       onClick: () => table.setPageIndex(0),
       disabled: !table.getCanPreviousPage(),
-      label: "<<",
+      label: <KeyboardDoubleArrowLeftOutlinedIcon />,
     },
     {
       onClick: () => table.previousPage(),
       disabled: !table.getCanPreviousPage(),
-      label: "<",
+      label: <KeyboardArrowLeftOutlinedIcon />,
     },
     {
       onClick: () => table.nextPage(),
       disabled: !table.getCanNextPage(),
-      label: ">",
+      label: <KeyboardArrowRightOutlinedIcon />,
     },
     {
       onClick: () => table.setPageIndex(table.getPageCount() - 1),
       disabled: !table.getCanNextPage(),
-      label: ">>",
+      label: <KeyboardDoubleArrowRightOutlinedIcon />,
     },
   ];
 

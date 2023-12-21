@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import Filters from "./Filters";
 import Pagination from "./Pagination";
 import TableRow from "./TableRow";
+import Sort from "./Sort";
 
 interface TableProps {
   data: Measurement[];
@@ -78,10 +79,9 @@ export default function Table({ data }: TableProps) {
                               header.column.columnDef.header,
                               header.getContext()
                             )}
-                            {{
-                              asc: " 🔼",
-                              desc: " 🔽",
-                            }[header.column.getIsSorted() as string] ?? null}
+                            <Sort
+                              isSorted={header.column.getIsSorted() as string}
+                            />
                           </div>
                         )}
                         {header.column.getCanFilter() && (
