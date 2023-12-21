@@ -1,4 +1,4 @@
-import Table from "@/components/Table";
+import Table from "@/components/Table/Table";
 import { Measurement } from "@/types";
 
 async function getMeasurement(): Promise<Measurement[]> {
@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <main>
       <h3 className="font-bold text-center text-gradient mt-10 mb-5">
-        Ecoplant Home Assignment
+        Ecoplant Measurement Table
       </h3>
       <Table data={data} />;
     </main>
