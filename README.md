@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ![image](https://github.com/Vl4d1s/ecoplant-home-assignment/assets/42187212/4f396b2f-5e2e-4f01-93bb-62546fd7722e)
 
 ## Visit Production Site:
-https://vercel.com/vladismarkin/ecoplant-home-assignment
+[https://vercel.com/vladismarkin/ecoplant-home-assignment](https://ecoplant-home-assignment-fblnx732d-vladismarkin.vercel.app/)
 
 ## Getting Started
 
