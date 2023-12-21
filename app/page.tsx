@@ -1,5 +1,5 @@
-import Table from "@/components/Table/Table";
-import { getMeasurement } from "@/data/measurementService";
+import Table from "@/components/Table";
+import { getMeasurement } from "@/services/measurement-service";
 
 export default async function Home() {
   const data = await getMeasurement();

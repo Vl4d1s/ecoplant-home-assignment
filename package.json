@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node ./db-setup.js && next dev",
-    "build": "node ./db-setup.js && next build",
+    "dev": "node ./utils/db-setup.js && next dev",
+    "build": "node ./utils/db-setup.js && next build",
     "start": "next start",
     "lint": "next lint"
   },

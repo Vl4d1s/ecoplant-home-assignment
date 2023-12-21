@@ -12,9 +12,9 @@ import {
   getSortedRowModel,
 } from "@tanstack/react-table";
 import { useMemo } from "react";
-import Filters from "./Filters/Filters";
-import Pagination from "./Pagination/Pagination";
-import TableRow from "./TableRow/TableRow";
+import Filters from "./Filters";
+import Pagination from "./Pagination";
+import TableRow from "./TableRow";
 
 interface TableProps {
   data: Measurement[];
