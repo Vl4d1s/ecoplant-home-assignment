@@ -17,6 +17,7 @@ import Filters from "./Filters";
 import Pagination from "./Pagination";
 import TableRow from "./TableRow";
 import Sort from "./Sort";
+import React from "react";
 
 interface TableProps {
   data: Measurement[];
@@ -40,7 +41,7 @@ export default function Table({ data }: TableProps) {
         header: "Timestamp",
       }),
     ],
-    []
+    [columnHelper]
   );
 
   const table = useReactTable({
@@ -61,8 +62,8 @@ export default function Table({ data }: TableProps) {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 {table.getHeaderGroups().map((headerGroup) => (
-                  <>
-                    <tr key={headerGroup.id}>
+                  <React.Fragment key={headerGroup.id}>
+                    <tr>
                       {headerGroup.headers.map((header) => (
                         <th
                           key={header.id}
@@ -97,7 +98,7 @@ export default function Table({ data }: TableProps) {
                         </th>
                       ))}
                     </tr>
-                  </>
+                  </React.Fragment>
                 ))}
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
