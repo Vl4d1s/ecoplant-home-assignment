@@ -1,8 +1,9 @@
-import { Column, Table as ReactTable } from "@tanstack/react-table";
+import { Measurement } from "@/types";
+import { Column, Table } from "@tanstack/react-table";
 
 interface FiltersProps {
-  column: Column<any, any>;
-  table: ReactTable<any>;
+  column: Column<Measurement, unknown>;
+  table: Table<Measurement>;
 }
 
 export default function Filters({ column, table }: FiltersProps) {

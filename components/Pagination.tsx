@@ -1,8 +1,9 @@
-import { Table as ReactTable } from "@tanstack/react-table";
+import { Table } from "@tanstack/react-table";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardDoubleArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftOutlined";
 import KeyboardDoubleArrowRightOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowRightOutlined";
+import { Measurement } from "@/types";
 
 interface PaginationButtonProps {
   onClick: () => void;
@@ -11,7 +12,7 @@ interface PaginationButtonProps {
 }
 
 interface PaginationProps {
-  table: ReactTable<any>;
+  table: Table<Measurement>;
 }
 
 const PaginationButton = ({
