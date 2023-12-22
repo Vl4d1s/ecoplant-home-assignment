@@ -46,11 +46,11 @@ export default function Table({ data }: TableProps) {
   const table = useReactTable({
     columns,
     data: memoizedData,
-    initialState: { pagination: { pageSize: 20 } },
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: { pagination: { pageSize: 20 } },
   });
 
   return (
@@ -82,9 +82,7 @@ export default function Table({ data }: TableProps) {
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
-                              <Sort
-                                isSorted={header.column.getIsSorted() as string}
-                              />
+                              <Sort isSorted={header.column.getIsSorted()} />
                             </div>
                           )}
                         </th>

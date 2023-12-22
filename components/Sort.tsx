@@ -1,19 +1,18 @@
 import React from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { SortDirection } from "@tanstack/react-table";
 
 interface SortProps {
-  isSorted: string;
+  isSorted: SortDirection | false;
 }
 
 const Sort = ({ isSorted }: SortProps) => {
-  if (isSorted === "asc") {
-    return <ArrowDropUpIcon fontSize="medium" />;
-  } else if (isSorted === "desc") {
-    return <ArrowDropDownIcon fontSize="medium" />;
-  } else {
-    return null;
-  }
+  return isSorted === "asc" ? (
+    <ArrowDropUpIcon fontSize="medium" />
+  ) : isSorted === "desc" ? (
+    <ArrowDropDownIcon fontSize="medium" />
+  ) : null;
 };
 
 export default Sort;

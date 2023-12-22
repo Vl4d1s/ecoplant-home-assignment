@@ -30,6 +30,7 @@ const PaginationButton = ({
 );
 
 const Pagination = ({ table }: PaginationProps) => {
+  const pageIndex = table.getState().pagination.pageIndex;
   const buttons = [
     {
       onClick: () => table.setPageIndex(0),
@@ -64,15 +65,14 @@ const Pagination = ({ table }: PaginationProps) => {
         <span className="text-sm">
           Page{" "}
           <strong>
-            {table.getState().pagination.pageIndex + 1} of{" "}
-            {table.getPageCount()}
+            {pageIndex + 1} of {table.getPageCount()}
           </strong>
         </span>
         <span className="ml-2 text-sm">
           | Go to page:
           <input
             type="number"
-            defaultValue={table.getState().pagination.pageIndex + 1}
+            defaultValue={pageIndex + 1}
             onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               table.setPageIndex(page);
